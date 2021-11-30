@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap, validación y creación de objetos</title>
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container-fluid">
+  <div class="row align-items-center bg-dark bg-gradient text-white mb-2">
+    <div class="col py-3">
+      CERSIA
+    </div>
+    <div class="col-9">
+      <nav class="navbar navbar-light">
+        <form class="container-fluid justify-content-end">
+          <button id="trocea" class="btn btn-outline-success me-2" type="button">Recargar página</button>
+        </form>
+      </nav>
+    </div>
+  </div>
+  <div class="grid">
+    <section class="form">
+      <h2 class="title form__title">
+        Cargar de datos
+      </h2>
+      <form id="myForm">
+        <div class="form__field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" class="input form-control" placeholder="Escriba su nombre aquí" type="text">
+        </div>
+        <div class="form__field">
+          <label for="apellidos">Apellidos</label>
+          <input placeholder="Escriba sus apellidos aquí" id="apellidos" class="input form-control" type="text">
+        </div>
+        <div class="form__field">
+          <label for="email">Email</label>
+          <input placeholder="Escriba sus email aquí" id="email" class="input form-control" type="text">
+        </div>
+        <div class="form__field">
+          <label for="date">Fecha de nacimiento</label>
+          <input placeholder="Escriba su fecha de nacimiento" id="date" class="input form-control" type="date">
+        </div>
+        <div class="form__field">
+          <label for="cargo">Cargo</label>
+          <select class="input option form-select" name="cargo" id="cargo">
+            <option value="profe">Profesor</option>
+            <option value="alumno">Alumno</option>
+          </select>
+        </div>
+        <div class="form__field">
+          <label for="otros">Otros</label>
+
+          <textarea placeholder="Datos adicionales que desee aportar" id="otros"
+            class="input textarea form-control"></textarea>
+        </div>
+
+        <div class="">
+          <fieldset>
+            <legend>Opciones</legend>
+            <div class="row">
+              <div class="col form-check form-switch">
+                <label class="form-check-label" for="alta">Dar de alta</label>
+                <input class="form-check-input" name="opciones" checked type="radio" id="alta">
+              </div>
+
+              <div class="col form-check form-switch">
+                <label class="form-check-label" for="baja">Modificar</label>
+                <input class="form-check-input" name="opciones" type="radio" id="baja">
+              </div>
+            </div>
+          </fieldset>
+          <div class="alert">
+
+          </div>
+          <div class="text-center"><button id="btn-registro" class="btn btn-secondary">Ejecutar</button></div>
+        </div>
+
+      </form>
+    </section>
+    <section class="out">
+      <h2 class="title out__title">
+        Salida de datos
+      </h2>
+      <div class="out__data">
+
+      </div>
+    </section>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
