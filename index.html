@@ -24,20 +24,20 @@
       </h1>
       <form id="myForm" class="seccion__content">
         <div class="form__field">
-          <label for="nombre">Nombre</label>
-          <input id="nombre" class="input form-control" placeholder="Escriba su nombre aquí" type="text">
+          <label for="nombre" class="control-label required" data-title="Campo obligatorio">Nombre</label>
+          <input id="nombre" name="nombre" class="input form-control" placeholder="Escriba su nombre aquí" type="text">
         </div>
         <div class="form__field">
-          <label for="apellidos">Apellidos</label>
-          <input placeholder="Escriba sus apellidos aquí" id="apellidos" class="input form-control" type="text">
+          <label for="apellidos" class="control-label required" data-title="Campo obligatorio">Apellidos</label>
+          <input name="apellidos" placeholder="Escriba sus apellidos aquí" id="apellidos" class="input form-control" type="text">
         </div>
         <div class="form__field">
-          <label for="email">Email</label>
-          <input placeholder="Escriba sus email aquí" id="email" class="input form-control" type="text">
+          <label for="email" class="control-label required" data-title="Campo obligatorio">Email</label>
+          <input name="email" placeholder="Escriba sus email aquí" id="email" class="input form-control" type="text">
         </div>
         <div class="form__field">
           <label for="date">Nacimiento</label>
-          <input placeholder="Escriba su fecha de nacimiento" id="date" class="input form-control" type="date">
+          <input name="date" id="date" class="input form-control" type="date">
         </div>
         <div class="form__field">
           <label for="cargo">Cargo</label>
