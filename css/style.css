@@ -16,7 +16,34 @@ input{
     grid-row: 2 / span 1;
     
 }
-.form form {
+
+.form__field{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .5em;
+}
+.control-label.required{
+  position: relative;
+}
+.control-label.required::after{
+  content:"⁕";
+  position: relative;
+  top: -.5em;
+  left: .2em;
+  color: red;
+}
+.control-label:hover::after{
+  content: attr(data-title);
+  position: absolute;
+  left: 0;
+  top: -1em;
+  padding: .2em .5em;
+  background-color: white;
+  box-shadow: 0 0 0 1px black;
+  white-space: nowrap;
+}
+
+.seccion__content{
   width: max(20vw,400px);
   padding: 1em; 
   background-size: cover;
@@ -24,14 +51,6 @@ input{
   box-shadow: 0 0 0 .5em black,
               0 0 0 .6em white,
               0 0 0 .7em black;
-}
-.form__field{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: .5em;
-}
-
-.seccion__content{
   background-color: white;
   
 }
@@ -40,6 +59,9 @@ input{
   }
 .input, .option{
   width: 75%;
+}
+.out__data *{
+  font-size: .8rem;
 }
 .input{
   border-style: dashed;
