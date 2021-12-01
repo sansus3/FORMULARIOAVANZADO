@@ -3,10 +3,12 @@ input{
   appearance: none;
   outline: none;
 }
+.container-fluid{
+  background-color: yellow;
+}
 .grid {
   display: grid;
   gap: .5em;
-  width: 99vw;
   margin: 0 auto;
 
 }
@@ -16,32 +18,53 @@ input{
 }
 .form form {
   width: max(20vw,400px);
-  padding: 1em;
-  background: linear-gradient(grey,white,grey) no-repeat;
+  padding: 1em; 
   background-size: cover;
-  border-radius: .5em;
   font-size: clamp(1em, 1.5em, 1.2em);
+  box-shadow: 0 0 0 .5em black,
+              0 0 0 .6em white,
+              0 0 0 .7em black;
 }
 .form__field{
   display: flex;
   justify-content: space-between;
   margin-bottom: .5em;
 }
+
+.seccion__content{
+  background-color: white;
+  
+}
+  .form__field label{
+    font-size: .8em;
+  }
 .input, .option{
   width: 75%;
 }
 .input{
-  border-style: none;
+  border-style: dashed;
+  border-width: 2px;
   border-radius: .3em;
+}
+.btn{
+  width: 100%;
 }
 .option{
   background-color: rgb(97, 94, 94);
-  color: white;
+ 
+}
+.legend{
+  font-size: 1em;
+}
+.title{
+  padding: .5em;
+  text-align: center;
+  font-size: 1.4em;
 }
 @media (min-width: 800px) {
   .grid {
     grid-template-columns: repeat(2,minmax(400px, auto));
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     column-gap: 2em;
     justify-content: center;
   }
