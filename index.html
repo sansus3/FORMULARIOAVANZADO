@@ -16,20 +16,13 @@
     <div class="col py-3">
       CERSIA
     </div>
-    <div class="col-9">
-      <nav class="navbar navbar-light">
-        <form class="container-fluid justify-content-end">
-          <button id="trocea" class="btn btn-outline-success me-2" type="button">Recargar página</button>
-        </form>
-      </nav>
-    </div>
   </div>
   <div class="grid">
-    <section class="form">
-      <h2 class="title form__title">
+    <section class="form seccion">
+      <h1 class="title form__title">
         Cargar de datos
-      </h2>
-      <form id="myForm">
+      </h1>
+      <form id="myForm" class="seccion__content">
         <div class="form__field">
           <label for="nombre">Nombre</label>
           <input id="nombre" class="input form-control" placeholder="Escriba su nombre aquí" type="text">
@@ -43,12 +36,12 @@
           <input placeholder="Escriba sus email aquí" id="email" class="input form-control" type="text">
         </div>
         <div class="form__field">
-          <label for="date">Fecha de nacimiento</label>
+          <label for="date">Nacimiento</label>
           <input placeholder="Escriba su fecha de nacimiento" id="date" class="input form-control" type="date">
         </div>
         <div class="form__field">
           <label for="cargo">Cargo</label>
-          <select class="input option form-select" name="cargo" id="cargo">
+          <select class="input option form-select bg-light" name="cargo" id="cargo">
             <option value="profe">Profesor</option>
             <option value="alumno">Alumno</option>
           </select>
@@ -59,35 +52,36 @@
           <textarea placeholder="Datos adicionales que desee aportar" id="otros"
             class="input textarea form-control"></textarea>
         </div>
-
-        <div class="">
-          <fieldset>
-            <legend>Opciones</legend>
-            <div class="row">
-              <div class="col form-check form-switch">
-                <label class="form-check-label" for="alta">Dar de alta</label>
-                <input class="form-check-input" name="opciones" checked type="radio" id="alta">
-              </div>
-
-              <div class="col form-check form-switch">
-                <label class="form-check-label" for="baja">Modificar</label>
-                <input class="form-check-input" name="opciones" type="radio" id="baja">
-              </div>
+        
+        <fieldset class="form__field">
+          <legend class="legend">Opciones</legend>
+          <div class="row">
+            <div class="col form-check form-switch">
+              <label class="form-check-label" for="alta">Dar de alta</label>
+              <input class="form-check-input" name="opciones" checked type="radio" id="alta">
             </div>
-          </fieldset>
-          <div class="alert">
 
+            <div class="col form-check form-switch">
+              <label class="form-check-label" for="baja">Modificar</label>
+              <input class="form-check-input" name="opciones" type="radio" id="baja">
+            </div>
           </div>
-          <div class="text-center"><button id="btn-registro" class="btn btn-secondary">Ejecutar</button></div>
+        </fieldset>        
+
+        <div class="alert">
+
         </div>
+        
+        <button id="btn-registro" class="btn btn-primary btn-block">Ejecutar</button>    
+        
 
       </form>
     </section>
-    <section class="out">
-      <h2 class="title out__title">
+    <section class="seccion out">
+      <h1 class="title out__title">
         Salida de datos
-      </h2>
-      <div class="out__data">
+      </h1>
+      <div class="out__data seccion__content">
 
       </div>
     </section>
