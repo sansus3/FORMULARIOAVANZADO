@@ -1,3 +1,6 @@
+:root{
+  --angle: 0deg;
+}
 input{
   -webkit-appearance: none;
   appearance: none;
@@ -5,6 +8,20 @@ input{
 }
 .container-fluid{
   background-color: yellow;
+  background-image: linear-gradient(var(--angle), green, rgb(200, 241, 13), yellow);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  animation: 10s rotate linear infinite;
+}
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 .grid {
   display: grid;
@@ -43,17 +60,18 @@ input{
   white-space: nowrap;
 }
 
-.seccion__content{
+.seccion__content{  
   width: max(20vw,400px);
   padding: 1em; 
   background-size: cover;
   font-size: clamp(1em, 1.5em, 1.2em);
-  box-shadow: 0 0 0 .5em black,
-              0 0 0 .6em white,
-              0 0 0 .7em black;
-  background-color: white;
-  
+  box-shadow: 0 0 0 .2em black,
+              0 0 0 .3em white,
+              0 0 0 .4em black;
+  background-color: white;  
 }
+
+  
   .form__field label{
     font-size: .8em;
   }
