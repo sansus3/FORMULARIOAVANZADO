@@ -8,7 +8,7 @@ input{
 }
 .container-fluid{
   background-color: yellow;
-  background-image: linear-gradient(var(--angle), green, rgb(200, 241, 13), yellow);
+  background-image: linear-gradient(var(--angle), #408080, #408066, #5A8040);
   background-repeat: no-repeat;
   min-height: 100vh;
   animation: 10s rotate linear infinite;
@@ -63,12 +63,12 @@ input{
 .seccion__content{  
   width: max(20vw,400px);
   padding: 1em; 
-  background-size: cover;
+  background-color: white;  
   font-size: clamp(1em, 1.5em, 1.2em);
   box-shadow: 0 0 0 .2em black,
               0 0 0 .3em white,
-              0 0 0 .4em black;
-  background-color: white;  
+              0 0 0 .4em black;  
+  border-radius: .3em;
 }
 
   
@@ -100,6 +100,10 @@ input{
   padding: .5em;
   text-align: center;
   font-size: 1.4em;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px black;
 }
 @media (min-width: 800px) {
   .grid {
