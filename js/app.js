@@ -1,10 +1,14 @@
 import { clearBlankSpaces } from "./functions.js";
+import Persona from "./Persona.js";
 
 const form = document.querySelector("#myForm");
 const inputNombre = document.querySelector("#nombre");
 const inputApellidos = document.querySelector("#apellidos");
 const inputEmail = document.querySelector("#email");
+const inputInfo = document.querySelector("#otros");
+const selectCargo = document.querySelector("#cargo");
 const outputAlert = document.querySelector(".alert");
+const outputData = document.querySelector(".out__data");
  
 /**
  * @description Función que valida el formulario
@@ -38,6 +42,22 @@ const validar = () => { //definición de la función
     return true;
 }
 
+/**
+ * Dar de alta a un usuario
+ */
+const darAlta = () => {
+    let nombre =  clearBlankSpaces(inputNombre.value);
+    let apellidos = clearBlankSpaces(inputApellidos.value);
+    let p1 = new Persona(nombre,apellidos);
+    p1._email = inputEmail.value;
+    let index = selectCargo.selectedIndex; //el indice numérico seleccinado por el usuario
+    p1._cargo = selectCargo.options[index].text;
+    p1._info = inputInfo.value;
+    outputData.innerHTML += p1.toString();
+    
+    
+}
+
 form.onsubmit = ev => {
     //Parar el envío del formulario
     ev.preventDefault();
@@ -48,11 +68,13 @@ form.onsubmit = ev => {
     //Validar
     if(validar()){//true está validado.
         if(chkAlta.checked){//doy de alta
-            alert("dar de alta");
+            darAlta();            
         }else{
             alert("Modificar")
         }
     }
 
 }
+
+
 
