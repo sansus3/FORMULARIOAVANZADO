@@ -1,6 +1,7 @@
 "use strict"; //modo estricto
 import { Persona,Profesor,Alumno } from "./Persona.js"; //Clase exportada nominalmente (no por defecto)
 import quitarEspaciosEnBlanco from "./functions.js"; //Función exportado por defecto
+import clearwhiteSpaces from "./functions.js";
 /**
  * Métodos y palabras reservadas de JS empleadas:
  * split() De un String genera un array
@@ -29,11 +30,17 @@ const alertEl = document.querySelector(".alert");//Mensajes de error
 const cargoEl = document.querySelector("#cargo");//Selector para si saber si la persona es estudiante/profesor
 const otrosEl = document.querySelector("#otros");
 const emailEl = document.querySelector("#email");
+const hiddenEl = document.querySelector("#hidden");
 const checkedAltaEl = document.querySelector("#alta");//Radio button de si el usuario es dado de alta o modificado su contenido
 
 
-const modificar = index => {
-    console.log(index);
+const ponerEnFormulario = index => {
+    hiddenEl.value = index;
+    nombreEl.value = personas[index].nombre;
+    apellidosEl.value = personas[index].apellidos;
+    emailEl.value = personas[index].email;
+    otrosEl.value = personas[index].info;
+    fechNacimientoEl.value = personas[index].fechaNacimiento;
 }
 
 /**
@@ -54,14 +61,28 @@ const render = personas => {
         element => {
             element.onclick = e => {
                 if(!checkedAltaEl.checked)
-                modificar(e.currentTarget)
+                    ponerEnFormulario(Number(e.currentTarget.dataset.id.match(/\d+/g)))
 
             }
         }
     );
 }
 
-
+/**
+ * Modificar los datos de una persona dada de alta
+ */
+const modificarPersona = () => {
+    const id = hiddenEl.value.length ? Number(hiddenEl.value) : null;
+    if(id!==null){
+        personas[id].nombre = clearwhiteSpaces(nombreEl.value);
+        personas[id].apellidos = clearwhiteSpaces(apellidosEl.value);
+        personas[id].email = clearwhiteSpaces(emailEl.value);
+        personas[id].info = otrosEl.value;
+        const fecha = fechNacimientoEl.value.split("-");
+        personas[id].setFechaNacimiento(...fecha);
+    }
+    render(personas);
+}
 
 /**
  * Función que instancia la clase Persona
@@ -86,9 +107,9 @@ const darAlta = (datos) => {
     //array.push Añadir elementos a un array
     personas.push(p);
     //Añadimos una persona de forma manual
-    personas.push(
-        new Persona({fechaNacimiento:new Date(1973,3,6),nombre:'Xurxo',apellidos:'González',email:'xurxo@webferrol.com',info:'Mola mucho'})
-    );
+    // personas.push(
+    //     new Persona({fechaNacimiento:new Date(1973,3,6),nombre:'Xurxo',apellidos:'González',email:'xurxo@webferrol.com',info:'Mola mucho'})
+    // );
     render(personas);
     //reseteamos el formulario
     myForm.reset();
@@ -130,7 +151,7 @@ myForm.addEventListener(
         const val = validate();
         if (val.length)
             alertEl.innerHTML = val.join("");
-        else if(checkedAltaEl.checked)
+        else if(checkedAltaEl.checked){
             darAlta(
                 [
                     quitarEspaciosEnBlanco(nombreEl.value), 
@@ -139,5 +160,8 @@ myForm.addEventListener(
                     quitarEspaciosEnBlanco(emailEl.value),
                     quitarEspaciosEnBlanco(otrosEl.value)
                 ]);
+        }else if(personas.length){
+            modificarPersona();
+        }
     }
 );

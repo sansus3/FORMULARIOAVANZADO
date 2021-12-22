@@ -19,15 +19,27 @@ export class Persona {
      * @description Getter para el nombre de la persona
      * @returns {string} - El nombre de la persona
      */
-    getNombre() {
+    get nombre() {
         return this.#nombre;
+    }
+    /**
+     * @param {string} n - Nombre de la persona
+     */
+    set nombre(n) {
+        this.#nombre = n;
     }
     /**
      * @description Getter para los apellidos de la persona
      * @returns {string} - Los apellidos de la persona
      */
-    getApellidos() {
+    get apellidos() {
         return this.#apellidos;
+    }
+    /**
+     * @param {string} n - Apellidos de la persona
+     */
+     set apellidos(a) {
+        this.#apellidos = a;
     }
     /**
      * @description Introduce la fecha de nacimiento de la persona en formato Date.      * 
@@ -55,6 +67,14 @@ export class Persona {
     dimeFechaNacimiento() {
         //Para mostrar el mes correcto como con getMonth() devuelve 0-11 hay que sumar 1
         return (!this.#fechaNacimiento) ? "" : `${this.#fechaNacimiento.getDate()}/${this.#fechaNacimiento.getMonth()+1}/${this.#fechaNacimiento.getFullYear()}`
+    }
+    /**
+     * Función que obtiene la fecha de nacimiento
+     * @returns {string} - Fecha de nacimiento con forma aaaa-mm-dd
+     */
+    get fechaNacimiento() {
+         //Para mostrar el mes correcto como con getMonth() devuelve 0-11 hay que sumar 1
+         return (!this.#fechaNacimiento) ? "" : `${this.#fechaNacimiento.getFullYear()}-${('0' + (this.#fechaNacimiento.getMonth()+1)).slice(-2)}-${('0' + this.#fechaNacimiento.getDate()).slice(-2)}`
     }
     /**
      * @description Obtiene la información de todos los campos de la clase Persona
