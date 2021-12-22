@@ -105,6 +105,9 @@ input{
   text-transform: uppercase;
   text-shadow: 0 0 5px black;
 }
+.form__field:focus-within{
+  background-color: rgba(241, 232, 219,.2);
+}
 @media (min-width: 800px) {
   .grid {
     grid-template-columns: repeat(2,minmax(400px, auto));
