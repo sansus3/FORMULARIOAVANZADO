@@ -5,11 +5,11 @@ export class Persona {
     info;
     email;
     /**
-     * @description Método constructor {nombre,apellidos,info,email,fechaNacimiento}
-     * @param {object} obj - objeto literal. Utilizamos Nullish coalescing operator (??)
+     * @description Métedo constructor que le pasamos los datos por 'Literal notation'
+     * @param {object} obj - {nombre:string,apellidos:string,info:string,email:string,fechaNacimiento:Date} 
      */
     constructor(obj) {
-        this.#nombre = obj.nombre?? "Sin nombre";
+        this.#nombre = obj.nombre?? "Sin nombre"; //Utilizamos Nullish coalescing operator (??)
         this.#apellidos = obj.apellidos??"";
         this.info = obj.info??'';
         this.email = obj.email??'';
