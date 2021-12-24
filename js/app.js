@@ -1,5 +1,5 @@
 "use strict"; //modo estricto
-import { Persona,Profesor,Alumno } from "./Persona.js"; //Clase exportada nominalmente (no por defecto)
+import { Persona, Profesor, Alumno } from "./Persona.js"; //Clase exportada nominalmente (no por defecto)
 import quitarEspaciosEnBlanco from "./functions.js"; //Función exportado por defecto
 import clearwhiteSpaces from "./functions.js";
 /**
@@ -48,24 +48,25 @@ const ponerEnFormulario = index => {
  * @param {Array} personas - Array con objetos de tipo Persona para renderizar
  */
 const render = personas => {
-    if(outputEl.shadowRoot===null)
-        outputEl.attachShadow({mode:'open'});//Adjuntamos (attach) el Shadow Dom
+    //Comprobamos si existe el DOM Virtual en caso negativo lo montamos
+    if (outputEl.shadowRoot === null)
+        outputEl.attachShadow({ mode: 'open' });//Adjuntamos (attach) el Shadow Dom
     else
         outputEl.shadowRoot.innerHTML = "";
     //Añadimos todos los elementos
-    personas.forEach((persona,indice) => {
-        outputEl.shadowRoot.innerHTML += `<section data-id="persona_${indice}"><h2>${persona.constructor.name}</h2>${persona.toString()}</section>`;        
+    personas.forEach((persona, indice) => {
+        outputEl.shadowRoot.innerHTML += `<section data-id="persona_${indice}"><h2>${persona.constructor.name}</h2>${persona.toString()}</section>`;
     });
-
+    //Capturamos el evento de hacer click en un elemento de la lista (datos de una persona) para colocar sus campos en el formulario
     outputEl.shadowRoot.querySelectorAll("section").forEach(
         element => {
             element.onclick = e => {
-                if(!checkedAltaEl.checked)
-                    ponerEnFormulario(Number(e.currentTarget.dataset.id.match(/\d+/g)))
+                //Seleccionamos la parte numérica conuna expresión regular
+                ponerEnFormulario(Number(e.currentTarget.dataset.id.match(/\d+/g)))
 
             }
         }
-    );
+    );    
 }
 
 /**
@@ -73,7 +74,7 @@ const render = personas => {
  */
 const modificarPersona = () => {
     const id = hiddenEl.value.length ? Number(hiddenEl.value) : null;
-    if(id!==null){
+    if (id !== null) {
         personas[id].nombre = clearwhiteSpaces(nombreEl.value);
         personas[id].apellidos = clearwhiteSpaces(apellidosEl.value);
         personas[id].email = clearwhiteSpaces(emailEl.value);
@@ -90,9 +91,9 @@ const modificarPersona = () => {
  */
 const darAlta = (datos) => {
     //Desestructuración del array
-    const [nombre = "Sin nombre", apellidos = "Sin apellidos", cargo = "",email = "", otros=""] = datos;
+    const [nombre = "Sin nombre", apellidos = "Sin apellidos", cargo = "", email = "", otros = ""] = datos;
     //Operador ternario comprobarmos qué cargo tiene la persona
-    const p = cargo==='Profesor' ? new Profesor({nombre, apellidos,email,info:otros}) : new Alumno({nombre, apellidos,email,info:otros});
+    const p = cargo === 'Profesor' ? new Profesor({ nombre, apellidos, email, info: otros }) : new Alumno({ nombre, apellidos, email, info: otros });
 
     //La fecha
     // value =	Una DOMString que representa una fecha en el formato AAAA-MM-DD, o nada
@@ -123,12 +124,12 @@ const validate = () => {
     const errores = [];
     const nombre = nombreEl.value;
     const apellidos = apellidosEl.value;
-    if (/^\s*$/.test(nombre)){
+    if (/^\s*$/.test(nombre)) {
         errores.push(`<div id="error-nombre" class="alert alert-danger error fs-6" role="alerta">El campo Nombre no puede estar vacío</div>`);
         nombreEl.focus(); //colocamos el cursor en el control de formulario
         return errores;
     }
-    if (/^\s*$/.test(apellidos)){
+    if (/^\s*$/.test(apellidos)) {
         errores.push(`<div id="error-apellidos" class="alert alert-danger error fs-6" role="alerta">El campo Apellidos no puede estar vacío</div>`); //colocalmos el cursor en el control de formulario
         apellidosEl.focus();
         return errores;
@@ -148,20 +149,29 @@ myForm.addEventListener(
         e.preventDefault();
         //console.log(e.target.elements) //Podemos ver los elementos de los formularios
         alertEl.innerHTML = "";
-        const val = validate();
-        if (val.length)
-            alertEl.innerHTML = val.join("");
-        else if(checkedAltaEl.checked){
-            darAlta(
-                [
-                    quitarEspaciosEnBlanco(nombreEl.value), 
-                    quitarEspaciosEnBlanco(apellidosEl.value),
-                    cargoEl.options[cargoEl.selectedIndex].text,
-                    quitarEspaciosEnBlanco(emailEl.value),
-                    quitarEspaciosEnBlanco(otrosEl.value)
-                ]);
-        }else if(personas.length){
-            modificarPersona();
+
+        if (checkedAltaEl.checked) {
+            const val = validate();
+            if (val.length)
+                alertEl.innerHTML = val.join("");
+            else
+                darAlta(
+                    [
+                        quitarEspaciosEnBlanco(nombreEl.value),
+                        quitarEspaciosEnBlanco(apellidosEl.value),
+                        cargoEl.options[cargoEl.selectedIndex].text,
+                        quitarEspaciosEnBlanco(emailEl.value),
+                        quitarEspaciosEnBlanco(otrosEl.value)
+                    ]);
+        } else if (personas.length) {
+            const val = validate();
+            if (val.length)
+                alertEl.innerHTML = val.join("");
+            else
+
+                modificarPersona();
+        } else {
+            alertEl.innerHTML = `<div class="alert alert-danger error fs-6" role="alerta">Debe de seleccionar primero a una persona</div>`
         }
     }
 );
